@@ -1,0 +1,7 @@
+fastapi[standard]
+sqlmodel
+sqlalchemy
+textblob
+pytest
+httpx
+python-dotenv

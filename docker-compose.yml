@@ -1,0 +1,28 @@
+services:
+  backend:
+    build: ./backend
+    container_name: note_application_backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8001:8000"
+    volumes:
+      - notes_data:/data
+    restart: unless-stopped
+
+  frontend:
+    # VITE_API_BASE_URL in frontend/.env must point at the host port (http://localhost:8001),
+    # because the browser — not the container — calls the backend.
+    build: ./frontend
+    container_name: note_application_frontend
+    env_file:
+      - ./frontend/.env
+    ports:
+      # Host port 5173 matches the backend's CORS allow_origins
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  notes_data:
