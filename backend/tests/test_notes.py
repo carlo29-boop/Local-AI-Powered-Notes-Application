@@ -23,7 +23,7 @@ def test_home():
     response = client.get("/")
 
     assert response.status_code == 200
-    assert response.json()["message"] == "Note Application API is running!"
+    assert response.json()["message"] == "Local AI-Powered Notes Application API is running!"
 
 
 # ---------- Authentication ----------
